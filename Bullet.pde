@@ -2,11 +2,13 @@ public boolean doExplode = false;
 public boolean targetHit = false;
 
 public class Bullet {
-  float xpos, ypos, speed;
+  float xpos, ypos, bwidth, bheight, speed;
   boolean doExplode = false;
-  Bullet(int x, int y, int speedd) {
+  Bullet(float x, float y, float bulletwidth, float bulletheight, float speedd) {
     ypos = y;
     xpos = x;
+    bwidth = bulletwidth;
+    bheight = bulletheight;
     speed = speedd;
   };
 
@@ -20,13 +22,15 @@ public class Bullet {
 
     if (!doExplode) {
       rect(xpos, ypos, 10, 30);
+    } else {
+      xpos = 0;
+      ypos = 0;
     }
-    
-    if (ypos < 140 && xpos > ((width/2)-10) && xpos < ((width/2)+40)) {
+
+    if (ypos < targety+targetheight && xpos > (targetx-bwidth) && xpos < (targetx+targetwidth)) {
         targetHit = true;
-        liveBullet = false;
-    
-    
+
+
     }
 
 
